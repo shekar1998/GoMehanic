@@ -5,7 +5,7 @@ export default {
   light: {
     text: '#122636',
     text2: '#fff',
-    background: 'rgb(236, 239, 253))',
+    background: '#fff',
     price: '#fd944d',
     tint: tintColorLight,
     Icon: '#A9A9A9',

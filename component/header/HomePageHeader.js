@@ -1,34 +1,32 @@
-import {StyleSheet, View} from 'react-native';
+import {Pressable, StyleSheet, View, Image} from 'react-native';
 import * as React from 'react';
 import {Avatar, Box, Button, Center, Container, Text} from 'native-base';
 import {Dimensions} from 'react-native';
-import Entypo from 'react-native-vector-icons/dist/EvilIcons';
+import Entypo from 'react-native-vector-icons/dist/Entypo';
 import color from '../../color/color';
+import LinearGradient from 'react-native-linear-gradient';
 
 const {width, height} = Dimensions.get('window');
 const bgcolor = color.light;
 
 const HomePageHeader = () => {
   return (
-    <Box width={width} flex={1} py={4} px={3} bg={bgcolor.background}>
+    <Box width={width} py={4} px={3}>
       <Box style={styles.parentElement}>
-        <Box w={'12%'}>
-          <Center
-            shadow={9}
-            bg="rgb(242, 243, 244)"
-            _text={{
-              color: 'white',
-              fontWeight: 'bold',
-            }}
-            borderRadius={40}
-            height={16}
-            width={16}>
-            <Entypo name="location" size={34} color={'black'} />
-          </Center>
-        </Box>
+        <View style={[styles.card, styles.shadowProp]}>
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 1}}
+            colors={['#edf3f5', '#e6eaeb']}
+            style={styles.linearGradient}>
+            <View>
+              <Entypo name="location-pin" size={28} color={'black'} />
+            </View>
+          </LinearGradient>
+        </View>
         <Box
           shadow={5}
-          w={'50%'}
+          w={'70%'}
           justifyContent={'space-between'}
           paddingBottom={2}>
           <Text fontSize="sm" color={'grey'} fontWeight={'thin'}>
@@ -38,12 +36,11 @@ const HomePageHeader = () => {
             Bangalore, Karnataka
           </Text>
         </Box>
-        <Box w={'20%'}>
-          <Avatar
-            size="lg"
-            bg="green.500"
+        <Box w={'12%'}>
+          <Image
+            style={styles.ImageContainer}
             source={{
-              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              uri: 'https://i.pinimg.com/originals/97/7e/57/977e57043787edecc39eeb55fee3d040.jpg',
             }}
           />
         </Box>
@@ -58,6 +55,35 @@ const styles = StyleSheet.create({
   parentElement: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: bgcolor.background,
+  },
+  card: {
+    backgroundColor: 'white',
+    borderRadius: 40,
+    width: 55,
+    height: 55,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+  shadowProp: {
+    // shadowOffset: {width: -4, height: 4},
+    // shadowColor: '#000',
+    // shadowOpacity: 0.2,
+    // shadowRadius: 1,
+    elevation: 9,
+  },
+  ImageContainer: {
+    width: 55,
+    height: 55,
+    borderRadius: 50,
+  },
+   linearGradient: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    width: 55,
+    height: 55,
   },
 });
