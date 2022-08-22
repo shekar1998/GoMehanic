@@ -11,14 +11,14 @@ import {NativeBaseProvider} from 'native-base';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import themeNative from './component/Fonts/FontsNativeBase';
 import BottomNavigation from './navigation/BottomNavigation';
-
 import StackNavigation from './navigation/StackNavigation';
 
 const App = () => {
   return (
     <SafeAreaProvider>
-      <NativeBaseProvider>
+      <NativeBaseProvider theme={themeNative}>
         <NavigationContainer>
           <BottomNavigation />
         </NavigationContainer>

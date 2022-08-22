@@ -21,81 +21,54 @@ const bgcolor = color.light;
 
 let brandImage = [
   {
+    color: '#e7f7ff',
     id: '1',
-    name: 'Volkswagen',
+    name: 'Car Wash',
     image:
-      'https://www.freepnglogos.com/uploads/volkswagen-car-logo-png-brand-image-0.png',
+      'https://cdn-icons.flaticon.com/png/512/3626/premium/3626863.png?token=exp=1659110197~hmac=0a18dd000bc44c7ca4525d1e37174e14',
   },
   {
+    color: '#fff7ee',
     id: '12',
-    name: 'Nissan',
-    image:
-      'https://www.freepnglogos.com/uploads/nissan-car-logo-png-brand-image-24.png',
+    name: 'Oil Changes',
+    image: 'https://cdn-icons-png.flaticon.com/512/2481/2481442.png',
   },
   {
+    color: '#e9ebf7',
     id: '13',
-    name: 'Ford',
-    image:
-      'https://www.freepnglogos.com/uploads/ford-cars-logo-brands-png-images-15.png',
+    name: 'Tyer change',
+    image: 'https://cdn-icons-png.flaticon.com/128/1505/1505467.png',
   },
   {
+    color: '#e7f7ff',
     id: '14',
-    name: 'BMW',
+    name: 'Spray paint',
     image:
-      'https://www.freepnglogos.com/uploads/bmw-car-logo-png-brand-image-2.png',
+      'https://cdn-icons.flaticon.com/png/128/3627/premium/3627979.png?token=exp=1659111785~hmac=0fcb9bc4faaca2b6b11eb58345712d51',
   },
   {
+    color: '#e7f7ff',
     id: '15',
-    name: 'Kia',
-    image:
-      'https://www.freepnglogos.com/uploads/kia-car-logo-png-brand-image-33.png',
+    name: 'Battery',
+    image: 'https://cdn-icons-png.flaticon.com/128/6674/6674685.png',
   },
   {
+    color: '#e7f7ff',
     id: '16',
-    name: 'Fiat',
-    image:
-      'https://www.freepnglogos.com/uploads/fiat-logo-fiat-car-symbol-png-11.png',
-  },
-  {
-    id: '17',
-    name: 'Mercedes',
-    image:
-      'https://www.freepnglogos.com/uploads/mercedes-benz-car-logo-png-brand-image-1.png',
-  },
-  {
-    id: '18',
-    name: 'Cooper',
-    image:
-      'https://www.freepnglogos.com/uploads/mini-cooper-car-logo-brands-png-images-26.png',
-  },
-  {
-    id: '19',
-    name: 'Porche',
-    image:
-      'https://www.freepnglogos.com/uploads/cars-logo-brands-png-images-30.png',
-  },
-  {
-    id: '10',
-    name: 'Renault',
-    image:
-      'https://www.freepnglogos.com/uploads/renault-car-logo-png-transparent-image-9.png',
-  },
-  {
-    id: '108',
-    name: 'Volvo',
-    image:
-      'https://www.freepnglogos.com/uploads/volvo-car-logo-png-brand-image-20.png',
+    name: 'Engin',
+    image: 'https://cdn-icons-png.flaticon.com/128/2061/2061956.png',
   },
 ];
 
 const renderItem = (item, ref) => {
   return (
-    <Box px={3}>
-      <LinearGradient
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}
-        colors={['#2193b0', '#6dd5ed']}
-        style={styles.linearGradient}>
+    <Box
+      px={3}
+      justifyContent={'center'}
+      alignContent={'center'}
+      alignItems={'center'}>
+      <View
+        style={{...styles.linearGradient, backgroundColor: item.item.color}}>
         <View style={styles.ImageContainer}>
           <Image
             style={styles.ImageStyle}
@@ -104,10 +77,18 @@ const renderItem = (item, ref) => {
             }}
           />
         </View>
-      </LinearGradient>
-      <Text fontSize="sm" style={{textAlign: 'center'}} fontWeight={'bold'}>
-        {item.item.name}
-      </Text>
+      </View>
+      <View style={styles.TextContainer}>
+        <Text
+          width={20}
+          fontSize="sm"
+          style={{textAlign: 'center'}}
+          fontFamily={'MPLUSRounded1c'}
+          fontStyle="normal"
+          fontWeight={500}>
+          Washing
+        </Text>
+      </View>
     </Box>
   );
 };
@@ -117,7 +98,13 @@ const BrandFlatList = () => {
 
   return (
     <Box top={-30} px={3}>
-      <Text fontSize="lg" mx={5} my={3} fontWeight={'extrabold'}>
+      <Text
+        fontFamily={'MPLUSRounded1c'}
+        fontStyle="normal"
+        fontSize="lg"
+        mx={5}
+        my={2}
+        fontWeight={600}>
         TOP BRAND
       </Text>
 
@@ -164,8 +151,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 2,
   },
   linearGradient: {
-    width: 75,
-    height: 75,
+    width: 65,
+    height: 65,
     margin: 1,
     borderRadius: 60,
     justifyContent: 'center',
@@ -186,5 +173,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     flex: 1,
+  },
+  TextContainer: {
+    paddingTop: 5,
+    justifyContent: 'center',
   },
 });

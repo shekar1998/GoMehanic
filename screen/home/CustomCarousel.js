@@ -11,7 +11,7 @@ export default function Slider() {
         horizontal={true}
         autoplay
         autoplayTimeout={6}
-        activeDot={<View style={{backgroundColor:'black', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+        activeDot={<View style={{backgroundColor:'blue', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
         paginationStyle={{
           marginBottom: 10,
           justifyContent: 'center',
@@ -63,7 +63,7 @@ export default function Slider() {
 const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('window').width - 40,
-    height: 270,
+    height: 250,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
