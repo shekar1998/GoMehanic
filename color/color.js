@@ -30,4 +30,10 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
   },
+  theme:{
+    background:"#FFFFFF",
+    buttonColor:"#4bb377",
+    headerText:"#646564",
+    valueText:"#505150"
+  }
 };

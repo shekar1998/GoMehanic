@@ -10,11 +10,11 @@ import {
   Text,
 } from 'native-base';
 import {Dimensions} from 'react-native';
-import Entypo from 'react-native-vector-icons/dist/EvilIcons';
-import color from '../../color/color';
-import LinearGradient from 'react-native-linear-gradient';
+import color from '../../../../color/color';
+
+
 import {useRef} from 'react';
-import Video from 'react-native-video';
+
 
 const {width, height} = Dimensions.get('window');
 const bgcolor = color.light;
@@ -102,6 +102,7 @@ const BrandFlatList = () => {
         fontFamily={'MPLUSRounded1c'}
         fontStyle="normal"
         fontSize="lg"
+        color="#646564"
         mx={5}
         my={2}
         fontWeight={600}>
@@ -114,17 +115,7 @@ const BrandFlatList = () => {
         renderItem={item => renderItem(item, ref)}
         keyExtractor={item => item.id}
       />
-      <Video
-        source={{
-          uri: 'https://youtu.be/PMZy53PHbY0',
-          headers: {
-            Authorization: 'bearer some-token-value',
-            'X-Custom-Header': 'some value',
-          },
-        }}
-        ref={ref} // Store reference
-        style={styles.backgroundVideo}
-      />
+     
     </Box>
   );
 };

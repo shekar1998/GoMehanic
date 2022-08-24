@@ -4,7 +4,8 @@ import {Avatar, Box, Button, Center, Container, Text} from 'native-base';
 import {Dimensions} from 'react-native';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
-import color from '../../color/color';
+import color from '../../../../color/color';
+
 import LinearGradient from 'react-native-linear-gradient';
 import GradientHeader from 'react-native-gradient-header';
 

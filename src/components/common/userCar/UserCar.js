@@ -2,8 +2,8 @@ import {FlatList, StyleSheet, View, Image, Dimensions} from 'react-native';
 import React from 'react';
 import {Box, Text, Button} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import color from '../../color/color';
-import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import color from '../../../../color/color';
+
 
 let brandImage = [
   {

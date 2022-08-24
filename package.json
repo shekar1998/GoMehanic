@@ -31,8 +31,8 @@
     "react-native-svg": "^12.4.0",
     "react-native-svg-path-gradient": "^0.4.0",
     "react-native-swiper": "^1.6.0",
-    "react-native-vector-icons": "^9.2.0",
-    "react-native-video": "^5.2.0"
+    "react-native-vector-icons": "^9.2.0"
+    
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

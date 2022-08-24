@@ -28,31 +28,31 @@ export default function Slider() {
         <View style={styles.slide}>
           <Image
             style={styles.image}
-            source={require('../../assets/Carousel/Slide1.jpg')}
+            source={require('../../../../assets/Carousel/Slide1.jpg')}
           />
         </View>
         <View style={styles.slide}>
           <Image
             style={styles.image}
-            source={require('../../assets/Carousel/Slide2.png')}
+            source={require('../../../../assets/Carousel/Slide2.png')}
           />
         </View>
         <View style={styles.slide}>
           <Image
             style={styles.image}
-            source={require('../../assets/Carousel/Slide3.jpg')}
+            source={require('../../../../assets/Carousel/Slide3.jpg')}
           />
         </View>
         <View style={styles.slide}>
           <Image
             style={styles.image}
-            source={require('../../assets/Carousel/Slide4.jpg')}
+            source={require('../../../../assets/Carousel/Slide4.jpg')}
           />
         </View>
         <View style={styles.slide}>
           <Image
             style={styles.image}
-            source={require('../../assets/Carousel/Slide5.jpg')}
+            source={require('../../../../assets/Carousel/Slide5.jpg')}
           />
         </View>
       </Swiper>

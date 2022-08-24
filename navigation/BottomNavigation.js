@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screen/home/HomeScreen';
+import HomeScreen from '../src/components/screens/home/HomeScreen';
 import StackNavigation from './StackNavigation';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 
@@ -14,15 +14,7 @@ export default function BottomNavigation() {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
-          if (route.name === 'Home') {
-            iconName = focused ? 'ios-home-sharp' : 'ios-home-outline';
-          } else if (route.name === 'HomeScreen') {
-            iconName = focused ? 'ios-heart-sharp' : 'ios-heart-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'flame' : 'flame-outline';
-          } else if (route.name === 'Settings12') {
-            iconName = focused ? 'color-filter' : 'color-filter-outline';
-          }
+        
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#51cbe9',
