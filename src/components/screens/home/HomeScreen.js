@@ -6,12 +6,12 @@ import Entypo from 'react-native-vector-icons/dist/EvilIcons';
 import color from '../../../../color/color';
 import HomePageHeader from '../../common/header/HomePageHeader';
 import BrandFlatList from '../../common/flatList/BrandFlatlist';
-
+import {StatusBar} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomCarousel from './CustomCarousel';
 import {useEffect} from 'react';
 import {LogBox} from 'react-native';
-import UserCar  from '../../common/userCar/UserCar';
+import UserCar from '../../common/userCar/UserCar';
 
 const {width, height} = Dimensions.get('window');
 const bgcolor = color.theme;
@@ -23,11 +23,12 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <Box flex={1} width={'100%'} >
+    <Box flex={1} width={'100%'}>
+      <StatusBar backgroundColor={bgcolor.background} barStyle="dark-content" />
       <LinearGradient
         start={{x: 0.7, y: 1}}
         end={{x: 0, y: 1}}
-        colors={[ '#FFFFFF', '#FFFFFF' ]}
+        colors={[bgcolor.background, bgcolor.background]}
         style={styles.linearGradient}>
         <HomePageHeader />
         <CustomCarousel />
@@ -35,7 +36,6 @@ const HomeScreen = () => {
           <BrandFlatList />
           <UserCar />
         </Box>
-        
       </LinearGradient>
     </Box>
   );
@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
   },
-  text:{
-    color:'#000',
-    padding:30,
-    fontFamily:'NanumBrushScript'
-  }
+  text: {
+    color: '#000',
+    padding: 30,
+    fontFamily: 'NanumBrushScript',
+  },
 });

@@ -15,10 +15,12 @@
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
     "i": "^0.3.7",
+    "moment": "^2.29.4",
     "native-base": "^3.4.9",
     "npm": "^8.15.1",
     "react": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-calendars": "^1.1288.2",
     "react-native-cardview": "^2.0.5",
     "react-native-drop-shadow": "^0.0.4",
     "react-native-gradient-header": "^0.2.1",
@@ -32,7 +34,6 @@
     "react-native-svg-path-gradient": "^0.4.0",
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^9.2.0"
-    
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

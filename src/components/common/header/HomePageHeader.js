@@ -6,9 +6,6 @@ import Entypo from 'react-native-vector-icons/dist/Entypo';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import color from '../../../../color/color';
 
-import LinearGradient from 'react-native-linear-gradient';
-import GradientHeader from 'react-native-gradient-header';
-
 const {width, height} = Dimensions.get('window');
 const bgcolor = color.light;
 
@@ -16,40 +13,49 @@ const HomePageHeader = () => {
   return (
     <Box style={styles.parentElement}>
       <View style={[styles.card]}>
-        <View style={styles.linearGradient}>
-          <Entypo name="location-pin" size={28} color={'black'} />
-        </View>
+        {/* <View style={styles.linearGradient}>  */}
+        <Image
+          style={styles.ImageContainer2}
+          source={{
+            uri: 'https://cdn-icons-png.flaticon.com/128/7721/7721875.png',
+          }}
+        />
       </View>
+      {/* </View>  */}
       <Box
         shadow={5}
         w={'70%'}
-        justifyContent={'space-between'}
+        justifyContent={'flex-end'}
         paddingBottom={2}>
-        <Text
-          fontSize="md"
-          fontFamily={'MPLUSRounded1c'}
-          fontStyle="normal"
-          fontWeight={600}>
-          Address
-        </Text>
         <Box
           shadow={5}
-          w={'70%'}
+          w={'32%'}
           flexDirection={'row'}
-          justifyContent={'space-between'}
-          paddingBottom={2}>
+          justifyContent={'space-between'}>
           <Text
             fontSize="sm"
-            color={'grey'}
             fontFamily={'MPLUSRounded1c'}
             fontStyle="normal"
-            fontWeight={500}>
-            #183/1, Nagarbhavi
+            fontWeight={600}>
+            Home
           </Text>
-          <AntDesign style={{top:3, left:-15}} name="downcircleo" size={18} color={'black'} />
+          <AntDesign
+            style={{top: 5, left: -15}}
+            name="down"
+            size={16}
+            color={'black'}
+          />
         </Box>
+        <Text
+          fontSize="sm"
+          color={'grey'}
+          fontFamily={'MPLUSRounded1c'}
+          fontStyle="normal"
+          fontWeight={500}>
+          #183/1, Nagarbhavi
+        </Text>
       </Box>
-      <Box w={'12%'}>
+      <Box style={[styles.card]}>
         <Image
           style={styles.ImageContainer}
           source={{
@@ -67,19 +73,17 @@ const styles = StyleSheet.create({
   parentElement: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 8,
-    marginHorizontal: 10,
+    
+    marginHorizontal: 2,
   },
   card: {
-    backgroundColor: 'transparent',
-    borderRadius: 20,
-    width: 55,
+    backgroundColor: 'red',
+    borderRadius: 70,
+    width: 45,
     height: 55,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    padding: 10,
-    borderWidth: 0.4,
   },
   shadowProp: {
     // shadowOffset: {width: -4, height: 4},
@@ -91,17 +95,20 @@ const styles = StyleSheet.create({
   ImageContainer: {
     width: 55,
     height: 55,
-    borderRadius: 20,
+    borderRadius: 50,
+    resizeMode: 'contain',
+  },
+  ImageContainer2: {
+    width: '65%',
+    height: '65%',
+    resizeMode: 'contain',
   },
   linearGradient: {
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    borderRadius: 50,
+    borderRadius: 70,
     width: 55,
     height: 55,
-  },
-  mainContainer: {
-    height: 155,
   },
 });

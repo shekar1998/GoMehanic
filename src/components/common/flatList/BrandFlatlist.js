@@ -99,8 +99,7 @@ const BrandFlatList = () => {
   return (
     <Box top={-30} px={3}>
       <Text
-        fontFamily={'MPLUSRounded1c'}
-        fontStyle="normal"
+        // fontFamily={'MPLUSRounded1c'}
         fontSize="lg"
         color="#646564"
         mx={5}

@@ -1,9 +1,16 @@
-import {FlatList, StyleSheet, View, Image, Dimensions} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {Box, Text, Button} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import color from '../../../../color/color';
-
+import {useNavigation} from '@react-navigation/native';
 
 let brandImage = [
   {
@@ -50,24 +57,34 @@ const {width, height} = Dimensions.get('window');
 const bgcolor = color.light;
 
 const UserCar = () => {
+  const navigation = useNavigation();
+
   const renderItem = item => {
     return (
-      <Box px={3} backgroundColor={'red'}>
-        <LinearGradient
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 1}}
-          colors={['#f0faff', '#f0faff']}
-          style={styles.linearGradient}>
-          <Box flexDirection={'row'} style={styles.center}>
-            <View style={styles.ImageContainer}>
-              <Image
-                style={styles.ImageStyle}
-                source={{
-                  uri: item.item.image,
-                }}
-              />
-            </View>
-            {/* <View style={styles.textContainer}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() =>
+          navigation.navigate(
+            // @ts-ignore
+            'ServiceScreen',
+          )
+        }>
+        <Box px={3}>
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 1}}
+            colors={['#f0faff', '#f0faff']}
+            style={styles.linearGradient}>
+            <Box flexDirection={'row'} style={styles.center}>
+              <View style={styles.ImageContainer}>
+                <Image
+                  style={styles.ImageStyle}
+                  source={{
+                    uri: item.item.image,
+                  }}
+                />
+              </View>
+              {/* <View style={styles.textContainer}>
               <Text
                 fontFamily={'PalanquinDark'}
                 fontStyle="normal"
@@ -83,18 +100,19 @@ const UserCar = () => {
                 2018
               </Text>
             </View> */}
-          </Box>
-          <Box backgroundColor={'red'} width={width - 50}>
-            <Button style={styles.button}>Book your appointment</Button>
-            {/* <Image
+            </Box>
+            <Box backgroundColor={'red'} width={width - 50}>
+              <Button style={styles.button}>Book your appointment</Button>
+              {/* <Image
               style={styles.offerImage}
               source={{
                 uri: 'https://cdn-icons-png.flaticon.com/128/6895/6895211.png',
               }}
             /> */}
-          </Box>
-        </LinearGradient>
-      </Box>
+            </Box>
+          </LinearGradient>
+        </Box>
+      </TouchableOpacity>
     );
   };
 
@@ -104,6 +122,8 @@ const UserCar = () => {
         data={brandImage}
         renderItem={item => renderItem(item)}
         keyExtractor={item => item.id}
+        horizontal={true}
+        scrollEnabled={false}
       />
     </Box>
   );

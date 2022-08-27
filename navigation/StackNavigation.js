@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import color from '../color/color';
 import HomeScreen from '../src/components/screens/home/HomeScreen';
+import ServiceScreen from '../src/components/screens/ServiceScreen';
 
 const Stack = createNativeStackNavigator();
 const bgcolor = color.light;
@@ -16,6 +17,13 @@ function StackNavigation() {
           headerShown: false,
         }}
         component={HomeScreen}
+      />
+       <Stack.Screen
+        name="ServiceScreen"
+        options={{
+          headerShown: false,
+        }}
+        component={ServiceScreen}
       />
     </Stack.Navigator>
   );
