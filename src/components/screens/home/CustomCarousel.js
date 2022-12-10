@@ -1,91 +1,163 @@
-// @ts-nocheck
-import React from 'react';
-import {View, Image, Dimensions, StyleSheet} from 'react-native';
-import Swiper from 'react-native-swiper';
+import * as React from 'react';
+import {View, Dimensions} from 'react-native';
+import {Box, Text, Input, Icon} from 'native-base';
+import Carousel from 'react-native-reanimated-carousel';
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 
-export default function Slider() {
+const PAGE_WIDTH = Dimensions.get('window').width;
+const colors = [
+  '#26292E',
+  '#899F9C',
+  '#B3C680',
+  '#5C6265',
+  '#F5D399',
+  '#F1F1F1',
+];
+
+function Index() {
+  const [isVertical, setIsVertical] = React.useState(false);
+  const [autoPlay, setAutoPlay] = React.useState(false);
+  const [pagingEnabled, setPagingEnabled] = React.useState(true);
+  const [snapEnabled, setSnapEnabled] = React.useState(true);
+  const progressValue = useSharedValue(0);
+  const baseOptions = isVertical
+    ? {
+        vertical: true,
+        width: PAGE_WIDTH,
+        height: PAGE_WIDTH * 0.6,
+      }
+    : {
+        vertical: false,
+        width: PAGE_WIDTH,
+        height: PAGE_WIDTH * 0.6,
+      };
+
   return (
-    <View style={styles.container}>
-      <Swiper
-        height={300}
-        horizontal={true}
-        autoplay
-        autoplayTimeout={6}
-        activeDot={<View style={{backgroundColor:'blue', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-        paginationStyle={{
-          marginBottom: 10,
-          justifyContent: 'center',
-          alignContent: 'center',
-          alignItems: 'center',
-          alignSelf: 'center',
+    <View
+      style={{
+        alignItems: 'center',
+      }}>
+      <Carousel
+        {...baseOptions}
+        loop
+        pagingEnabled={pagingEnabled}
+        snapEnabled={snapEnabled}
+        autoPlay={autoPlay}
+        autoPlayInterval={1500}
+        onProgressChange={(_, absoluteProgress) =>
+          (progressValue.value = absoluteProgress)
+        }
+        mode="parallax"
+        modeConfig={{
+          parallaxScrollingScale: 0.9,
+          parallaxScrollingOffset: 50,
         }}
-        style={{
-          justifyContent: 'center',
-          alignContent: 'center',
-          alignItems: 'center',
-          alignSelf: 'center',
-        }}>
-        <View style={styles.slide}>
-          <Image
-            style={styles.image}
-            source={require('../../../../assets/Carousel/Slide1.jpg')}
-          />
+        data={colors}
+        renderItem={({index}) => <Text></Text>}
+      />
+      {!!progressValue && (
+        <View
+          style={
+            isVertical
+              ? {
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  width: 10,
+                  alignSelf: 'center',
+                  position: 'absolute',
+                  right: 5,
+                  top: 40,
+                }
+              : {
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  width: 100,
+                  alignSelf: 'center',
+                }
+          }>
+          {colors.map((backgroundColor, index) => {
+            return (
+              <PaginationItem
+                backgroundColor={backgroundColor}
+                animValue={progressValue}
+                index={index}
+                key={index}
+                isRotate={isVertical}
+                length={colors.length}
+              />
+            );
+          })}
         </View>
-        <View style={styles.slide}>
-          <Image
-            style={styles.image}
-            source={require('../../../../assets/Carousel/Slide2.png')}
-          />
-        </View>
-        <View style={styles.slide}>
-          <Image
-            style={styles.image}
-            source={require('../../../../assets/Carousel/Slide3.jpg')}
-          />
-        </View>
-        <View style={styles.slide}>
-          <Image
-            style={styles.image}
-            source={require('../../../../assets/Carousel/Slide4.jpg')}
-          />
-        </View>
-        <View style={styles.slide}>
-          <Image
-            style={styles.image}
-            source={require('../../../../assets/Carousel/Slide5.jpg')}
-          />
-        </View>
-      </Swiper>
+      )}
+      <Text
+        fontSize="sm"
+        fontFamily={'MPLUSRounded1c'}
+        fontStyle="normal"
+        color={'#000'}
+        fontWeight={600}>
+        Manjunath S
+      </Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    width: Dimensions.get('window').width - 40,
-    height: 250,
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center'
-  },
-  slide: {
-    width: '100%',
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-  image: {
-    width: '100%',
-    height: '80%',
-    resizeMode: 'contain',
-    borderRadius: 20,
-    marginHorizontal: 10,
-  },
-});
+const PaginationItem = props => {
+  const {animValue, index, length, backgroundColor, isRotate} = props;
+  const width = 10;
+
+  const animStyle = useAnimatedStyle(() => {
+    let inputRange = [index - 1, index, index + 1];
+    let outputRange = [-width, 0, width];
+
+    if (index === 0 && animValue?.value > length - 1) {
+      inputRange = [length - 1, length, length + 1];
+      outputRange = [-width, 0, width];
+    }
+
+    return {
+      transform: [
+        {
+          translateX: interpolate(
+            animValue?.value,
+            inputRange,
+            outputRange,
+            Extrapolate.CLAMP,
+          ),
+        },
+      ],
+    };
+  }, [animValue, index, length]);
+  return (
+    <View
+      style={{
+        backgroundColor: 'white',
+        width,
+        height: width,
+        borderRadius: 50,
+        overflow: 'hidden',
+        transform: [
+          {
+            rotateZ: isRotate ? '90deg' : '0deg',
+          },
+        ],
+      }}>
+      <Animated.View
+        style={[
+          {
+            borderRadius: 50,
+            backgroundColor,
+            flex: 1,
+          },
+          animStyle,
+        ]}
+      />
+    </View>
+  );
+};
+
+export default Index;

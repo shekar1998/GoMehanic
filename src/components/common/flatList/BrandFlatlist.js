@@ -1,20 +1,10 @@
 import {FlatList, StyleSheet, View, Image} from 'react-native';
 import * as React from 'react';
-import {
-  Avatar,
-  Box,
-  Button,
-  Center,
-  Container,
-  ScrollView,
-  Text,
-} from 'native-base';
+import {Box, Text} from 'native-base';
 import {Dimensions} from 'react-native';
 import color from '../../../../color/color';
 
-
 import {useRef} from 'react';
-
 
 const {width, height} = Dimensions.get('window');
 const bgcolor = color.light;
@@ -97,7 +87,7 @@ const BrandFlatList = () => {
   const ref = useRef(null);
 
   return (
-    <Box top={-30} px={3}>
+    <Box top={-10}>
       <Text
         // fontFamily={'MPLUSRounded1c'}
         fontSize="lg"
@@ -114,7 +104,6 @@ const BrandFlatList = () => {
         renderItem={item => renderItem(item, ref)}
         keyExtractor={item => item.id}
       />
-     
     </Box>
   );
 };

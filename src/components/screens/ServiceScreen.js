@@ -109,7 +109,7 @@ const ServiceScreen = () => {
           {/* Car Service details */}
           <View style={[styles.calendarContainer, styles.calendarStyle]}>
             <Text style={styles.headerText}>Car wash details</Text>
-            <Calendar markingType={'period'} markedDates={_markedDay} />
+            {/* <Calendar markingType={'period'} markedDates={_markedDay} /> */}
           </View>
         </Box>
       </View>

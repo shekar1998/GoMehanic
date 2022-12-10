@@ -6,11 +6,12 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Text, Button} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import color from '../../../../color/color';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/core';
+import {InteractionManager, ActivityIndicator} from 'react-native';
 
 let brandImage = [
   {
@@ -23,59 +24,27 @@ let brandImage = [
     name: 'Nissan',
     image: 'https://www.pngmart.com/files/22/Nissan-Juke-PNG-Photo.png',
   },
-  {
-    id: '13',
-    name: 'Ford',
-    image: 'https://www.pngmart.com/files/22/Mercedes-GLB-PNG-Clipart.png',
-  },
-  {
-    id: '14',
-    name: 'BMW',
-    image:
-      'https://www.pngmart.com/files/22/Rolls-Royce-Phantom-PNG-HD-Isolated.png',
-  },
-  {
-    id: '15',
-    name: 'Kia',
-    image: 'https://www.pngmart.com/files/22/Audi-Q5-Transparent-PNG.png',
-  },
-  {
-    id: '16',
-    name: 'Fiat',
-    image:
-      'https://www.freepnglogos.com/uploads/fiat-logo-fiat-car-symbol-png-11.png',
-  },
-  {
-    id: '17',
-    name: 'Mercedes',
-    image:
-      'https://www.freepnglogos.com/uploads/mercedes-benz-car-logo-png-brand-image-1.png',
-  },
 ];
 
 const {width, height} = Dimensions.get('window');
 const bgcolor = color.light;
 
-const UserCar = () => {
+const UserCar = props => {
   const navigation = useNavigation();
 
   const renderItem = item => {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() =>
-          navigation.navigate(
-            // @ts-ignore
-            'ServiceScreen',
-          )
-        }>
-        <Box px={3}>
+        // @ts-ignore
+        onPress={() => navigation.navigate('ServiceScreen', null)}>
+        <Box px={3} flexDirection={'row'}>
           <LinearGradient
             start={{x: 0, y: 0}}
             end={{x: 1, y: 1}}
             colors={['#f0faff', '#f0faff']}
             style={styles.linearGradient}>
-            <Box flexDirection={'row'} style={styles.center}>
+            <Box style={styles.center}>
               <View style={styles.ImageContainer}>
                 <Image
                   style={styles.ImageStyle}
@@ -84,31 +53,18 @@ const UserCar = () => {
                   }}
                 />
               </View>
-              {/* <View style={styles.textContainer}>
-              <Text
-                fontFamily={'PalanquinDark'}
-                fontStyle="normal"
-                fontSize="lg"
-                fontWeight={500}>
-                Tesla Modal X
-              </Text>
-              <Text
-                style={{color: 'grey', fontWeight: '500'}}
-                fontFamily={'PalanquinDark'}
-                fontStyle="normal"
-                fontSize="lg">
-                2018
-              </Text>
-            </View> */}
-            </Box>
-            <Box backgroundColor={'red'} width={width - 50}>
-              <Button style={styles.button}>Book your appointment</Button>
-              {/* <Image
-              style={styles.offerImage}
-              source={{
-                uri: 'https://cdn-icons-png.flaticon.com/128/6895/6895211.png',
-              }}
-            /> */}
+              <Box w={'100%'}>
+                {/* <Text
+                  color={'#000'}
+                  fontSize="md"
+                  fontFamily={'MPLUSRounded1c'}
+                  fontStyle="normal"
+                  fontWeight={600}>
+                  Premium car wash
+                </Text> */}
+                <Text color={'#000'}></Text>
+                <Button style={styles.button}>Book your appointment</Button>
+              </Box>
             </Box>
           </LinearGradient>
         </Box>
@@ -123,7 +79,6 @@ const UserCar = () => {
         renderItem={item => renderItem(item)}
         keyExtractor={item => item.id}
         horizontal={true}
-        scrollEnabled={false}
       />
     </Box>
   );
@@ -138,12 +93,10 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    // backgroundColor:'red'
   },
   linearGradient: {
-    width: width - 50,
-    height: height / 6,
-    marginTop: 30,
+    width: width / 2,
+    height: height / 3.8,
     borderRadius: 25,
     shadowOffset: {width: -2, height: 2},
     shadowColor: '#bdbdbd',
@@ -151,19 +104,25 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
     justifyContent: 'space-evenly',
+    overflow: 'hidden',
   },
   ImageContainer: {
-    width: '80%',
-    height: '100%',
-    top: -15,
+    width: '180%',
+    height: '70%',
     left: -15,
-    // backgroundColor:'red'
+    // backgroundColor: 'red',
   },
   ImageStyle: {
     width: '100%',
     height: '100%',
     resizeMode: 'contain',
-    // alignSelf: 'flex-end',
+    overflow: 'hidden',
+    transform: [
+      // {rotateX: '180deg'}, //horizontally
+      {rotateY: '180deg'}, //vertically
+      // {scaleX: -1}, //horizontally
+      // {scaleY: -1} //vertically
+    ],
   },
   textContainer: {
     fontWeight: '500',
@@ -175,19 +134,16 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#181818',
-    elevation: 3,
+    // elevation: 3,
     width: width / 2,
-    top: -15,
-    left: width - 256,
-    borderBottomRightRadius: 25,
-    // height:60,
-    borderTopLeftRadius: 30,
+    // top: -10,
+    // left: width - 256,
+    // borderBottomRightRadius: 25,
+    height:50,
+    // borderTopLeftRadius: 30,
   },
   center: {
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
+    justifyContent: 'space-evenly',
   },
   offerImage: {
     width: '10%',

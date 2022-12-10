@@ -32,8 +32,12 @@ export default {
   },
   theme:{
     background:"#FFFFFF",
-    buttonColor:"#4bb377",
+    buttonColor:"#2948ff",
     headerText:"#646564",
-    valueText:"#505150"
+    valueText:"#505150",
+    textColor:'rgb(29, 29, 29)',
+    greyColor:'rgb(126, 126, 126)',
+    darktextColor:'rgb(243, 243, 243)',
+    darkSubText:'rgb(223, 223, 223)'
   }
 };
